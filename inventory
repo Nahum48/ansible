@@ -1,4 +1,7 @@
+[python3_hosts]
 192.168.1.30
 192.168.1.31
 192.168.1.32
 
+[python3_hosts:vars]
+ansible_python_interpreter=/usr/bin/python3
