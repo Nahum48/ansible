@@ -6,3 +6,6 @@
 [python3_hosts:vars]
 ansible_python_interpreter=/usr/bin/python3
 
+[web_servers]
+192.168.1.30
+

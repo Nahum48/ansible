@@ -1,10 +1,5 @@
 ---
 
-- hosts: all
-  become: true
-  tasks:
-
-
 - hosts: web_servers
   become: true
   tasks:
