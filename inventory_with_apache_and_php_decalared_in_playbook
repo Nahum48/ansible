@@ -1,0 +1,7 @@
+[python3_hosts]
+192.168.1.30 apache_package=apache2 php_package=libapache2-mod-php
+192.168.1.31 apache_package=apache2 php_package=libapache2-mod-php
+192.168.1.32 apache_package=apache2 php_package=libapache2-mod-php
+
+[python3_hosts:vars]
+ansible_python_interpreter=/usr/bin/python3
