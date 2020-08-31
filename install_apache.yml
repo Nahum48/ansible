@@ -10,4 +10,19 @@
         - apache2
         - libapache2-mod-php
       state: latest
-      update_cache: yes
+      update_cache: yes 
+    when: ansible_distribution == "Centos"
+
+  - name: Install htop.
+    apt: 
+      name:
+         - htop
+      state: latest
+  
+  - name: remove htop package.
+    apt: 
+      name:
+        - htop
+      state: absent
+    
+
