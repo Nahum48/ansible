@@ -11,6 +11,16 @@
        update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create Gal  user
+    tags: always
+    user: 
+      name: Gal
+      groups: root
+
 - hosts: workstations
   become: true
   tasks: 
@@ -39,6 +49,13 @@
         - apache2
         - libapache2-mod-php
       state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: start apache2 service
+    tags: apache,apache2,Ubuntu
+    service:
+     name: apache2
+     state: restarted
     when: ansible_distribution == "Ubuntu"
 
   - name: install apache and php for CentOS server
