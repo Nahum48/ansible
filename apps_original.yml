@@ -4,24 +4,39 @@
   become: true
   pre_tasks:
 
-  - name: updates repo cache (Ubuntu)
+  - name: install updates (Ubuntu)
     tags: always
     apt:
        upgrade: dist
        update_cache: yes
-    changed_when: false
     when: ansible_distribution == "Ubuntu"
 
 - hosts: all
   become: true
   tasks:
 
+  - name: create Gal  user
+    tags: always
+    user: 
+      name: Gal
+      groups: root
 
   - name: add ssh key for Gal user
     tags: always
     authorized_key:
       user : Gal	
       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID9C8V8/px3yYF8ZF5y+pxQ2EaiaphA7HXLN43Dj1fU2 ansible"
+
+
+  - name: add sudoers files for Gal
+    tags: always
+    copy:
+      src: sudoer_Gal
+      dest: /etc/sudoers.d/Gal
+      owner: root
+      group: root
+      mode: 0440
+
 
 
 - hosts: workstations
