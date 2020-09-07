@@ -1,0 +1,16 @@
+- name: install httpd package (Ubuntu)
+  tags: apache,apache2,ubuntu
+  apt: 
+    name:
+      - apache2
+      - libapache2-mod-php
+    state: latest
+
+- name: copy file for site
+  tags: apache,apache2,httpd
+  copy:
+    src: default_site.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644

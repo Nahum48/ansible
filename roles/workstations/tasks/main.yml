@@ -1,0 +1,27 @@
+- name: install unzip
+  package:
+    name: unzip
+
+- name: install Terraform
+  unarchive:
+    src: https://releases.hashicorp.com/terraform/0.13.1/terraform_0.13.1_linux_amd64.zip
+    dest: /usr/local/bin
+    remote_src: yes
+    mode: 0755
+    owner: root
+    group: root
+
+- name: install htop
+  apt:
+    name:
+      - htop
+    state: latest
+
+- name: install a .deb package
+  apt:
+    deb: https://jaist.dl.sourceforge.net/project/stacer/v1.0.9/stacer_1.0.9_amd64.deb
+   
+- name: install stacer
+  apt:
+    pkg: https://jaist.dl.sourceforge.net/project/stacer/v1.0.9/stacer_1.0.9_amd64.deb
+    state: build-dep
