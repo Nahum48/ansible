@@ -1,0 +1,13 @@
+[python3_hosts]
+
+[web_servers]
+192.168.1.30 
+
+[db_servers]
+192.168.1.31 
+
+[file_servers]
+192.168.1.32 
+
+[python3_hosts:vars]
+ansible_python_interpreter=/usr/bin/python3

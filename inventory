@@ -19,4 +19,7 @@ ansible_python_interpreter=/usr/bin/python3
 [workstations]
 192.168.1.23
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 43f10172c9f721a622b9d2d73ff15bc0261b4ce7

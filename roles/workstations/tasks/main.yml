@@ -1,18 +1,42 @@
 - name: install unzip
   package:
     name: unzip
+<<<<<<< HEAD
  
 - name: install terraform
   unarchive:
     src: https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
+=======
+
+- name: install Terraform
+  unarchive:
+    src: https://releases.hashicorp.com/terraform/0.13.1/terraform_0.13.1_linux_amd64.zip
+>>>>>>> 43f10172c9f721a622b9d2d73ff15bc0261b4ce7
     dest: /usr/local/bin
     remote_src: yes
     mode: 0755
     owner: root
     group: root
 
+<<<<<<< HEAD
 - name: install Tree app.
   apt: 
     name: tree
 
 
+=======
+- name: install htop
+  apt:
+    name:
+      - htop
+    state: latest
+
+- name: install a .deb package
+  apt:
+    deb: https://jaist.dl.sourceforge.net/project/stacer/v1.0.9/stacer_1.0.9_amd64.deb
+   
+- name: install stacer
+  apt:
+    pkg: https://jaist.dl.sourceforge.net/project/stacer/v1.0.9/stacer_1.0.9_amd64.deb
+    state: build-dep
+>>>>>>> 43f10172c9f721a622b9d2d73ff15bc0261b4ce7
