@@ -1,4 +1,5 @@
 [python3_hosts]
+
 192.168.1.30 
 192.168.1.31 
 192.168.1.32
@@ -17,5 +18,4 @@ ansible_python_interpreter=/usr/bin/python3
 192.168.1.32
 
 [workstations]
-192.168.1.35
-
+192.168.1.

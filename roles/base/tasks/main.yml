@@ -1,13 +1,5 @@
 - name: add ssh key for Gal user
-<<<<<<< HEAD
   tags: always
   authorized_key:
       user: Gal
       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID9C8V8/px3yYF8ZF5y+pxQ2EaiaphA7HXLN43Dj1fU2 ansible"
-=======
-  authorized_key:
-      user : Gal
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID9C8V8/px3yYF8ZF5y+pxQ2EaiaphA7HXLN43Dj1fU2 ansible"
-
-
->>>>>>> 43f10172c9f721a622b9d2d73ff15bc0261b4ce7

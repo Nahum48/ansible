@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 - name: install mariadb server
   tags: db,mariadb,ubuntu
   apt:
      name: mariadb-server
      state: latest
   when: ansible_distribution == "Ubuntu"
-=======
+
 - name: install mariadb package (CentOS)
   tags: mariadb, centos, db
   dnf:
@@ -19,5 +18,3 @@
     name: mariadb-server
     state: latest
   when: ansible_distribution == "Ubuntu"
-
->>>>>>> 43f10172c9f721a622b9d2d73ff15bc0261b4ce7
