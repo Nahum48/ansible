@@ -11,6 +11,7 @@
     when: ansible_distribution == "Ubuntu"
 
   - name: install updates (Centos)
+    tags: always
     apt:
       upgrade: dist
       update_cache: yes
@@ -27,16 +28,19 @@
     - workstations
  
 - hosts: web_servers
+  tags: apache,apache2,ubuntu
   become: true
   roles:
      - web_servers
  
 - hosts: db_servers
+  tags: db,mariadb
   become: true
   roles:
      - db_servers
  
 - hosts: file_servers
+  tags: samba,smb
   become: true
   roles:
      - file_servers

@@ -16,14 +16,6 @@
   become: true
   tasks:
 
-
-  - name: add ssh key for Gal user
-    tags: always
-    authorized_key:
-      user : Gal	
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID9C8V8/px3yYF8ZF5y+pxQ2EaiaphA7HXLN43Dj1fU2 ansible"
-
-
 - hosts: workstations
   become: true
   tasks: 
@@ -40,6 +32,12 @@
       mode: 0755
       owner: root
       group: root
+  
+  - name: remove apache2 package
+    apt: 
+      name: apache2
+      state: absent
+
 
 - hosts: web_servers
   become: true
@@ -97,9 +95,19 @@
       state: latest
     when: ansible_distribution == "Ubuntu"
 
+  - name: remove apache2 package
+    apt:
+      name: apache2
+      state: absent
+
 - hosts: file_servers
   become: true
   tasks:
+  
+  - name: remove apache2 package
+    apt:  
+      name: apache2
+      state: absent
 
   - name: install samba package
     tags: samba 

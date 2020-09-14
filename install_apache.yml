@@ -11,18 +11,21 @@
         - libapache2-mod-php
       state: latest
       update_cache: yes 
-    when: ansible_distribution == "Centos"
+    when: ansible_distribution == "Ubuntu"
 
-  - name: Install htop.
+  - name: Install htop tmux vim
     apt: 
       name:
          - htop
+         - tmux
+         - vim-nox
       state: latest
-  
-  - name: remove htop package.
-    apt: 
-      name:
+
+  - name: remove htop tmux vim
+    apt:
+      name: 
         - htop
+        - tmux
+        - vim-nox
       state: absent
-    
 
