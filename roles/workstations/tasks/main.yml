@@ -11,12 +11,7 @@
     owner: root
     group: root
 
-- name: install Tree app.
+- name: install Apps
   apt: 
     name: tree
-
-- name: install htop
-  apt:
-    name:
-      - htop
-    state: latest
+  state: latest
