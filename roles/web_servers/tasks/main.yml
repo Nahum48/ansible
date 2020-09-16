@@ -1,4 +1,4 @@
-  - name: start apache2 service
+  - name: start apache service
     tags: apache,apache2,Ubuntu
     service:
      name: apache2
@@ -15,9 +15,3 @@
       group: root
       mode: 0644
 
-  - name: restart apache service
-    service:
-      name: "{{ apache_service }}"
-      state: restarted
-
- 

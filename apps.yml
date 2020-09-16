@@ -20,9 +20,17 @@
   become: true
   tasks: 
 
-  - name: install unzip
+  - name: install unzip and apps
     package:
       name: unzip
+
+  - name: install other apps on workstation
+    apt:
+      name: 
+       - tmux
+       - htop
+       - vim-nox
+       - tree
 
   - name: install Terraform
     unarchive:
@@ -37,7 +45,6 @@
     apt: 
       name: apache2
       state: absent
-
 
 - hosts: web_servers
   become: true
