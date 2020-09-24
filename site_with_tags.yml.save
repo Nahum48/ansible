@@ -1,0 +1,38 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: update repoistory index (Ubuntu)
+    tags: always
+    apt:
+      
+update_cache: yes 
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install updates (Centos)
+    tags: always
+    apt:
+      update_cache: yes
+      changed_when: false
+    when: ansible_distribution == "Centos"
+
+- hosts: all
+  become: true
+
+- hosts: workstations
+  become: true
+ 
+- hosts: web_servers
+  tags: apache,apache2,ubuntu
+  become: true
+ 
+- hosts: db_servers
+  tags: db,mariadb
+  become: true
+ 
+- hosts: file_servers
+  tags: samba,smb
+  become: true
+ 

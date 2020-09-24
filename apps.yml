@@ -24,14 +24,6 @@
     package:
       name: unzip
 
-  - name: install other apps on workstation
-    apt:
-      name: 
-       - tmux
-       - htop
-       - vim-nox
-       - tree
-
   - name: install Terraform
     unarchive:
       src: https://releases.hashicorp.com/terraform/0.13.1/terraform_0.13.1_linux_amd64.zip
@@ -45,7 +37,7 @@
     apt: 
       name: apache2
       state: absent
-
+ 
 - hosts: web_servers
   become: true
   tasks:
@@ -59,7 +51,7 @@
       state: latest
     when: ansible_distribution == "Ubuntu"
 
-  - name: start apache2 service
+  - name: restart apache2 service
     tags: apache,apache2,Ubuntu
     service:
      name: apache2
@@ -101,6 +93,12 @@
       name: mariadb-server
       state: latest
     when: ansible_distribution == "Ubuntu"
+
+  - name: install nginx 
+    tags: nginx
+    apt:
+      name: nginx
+      state: latest
 
   - name: remove apache2 package
     apt:

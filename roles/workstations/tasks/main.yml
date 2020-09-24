@@ -11,7 +11,12 @@
     owner: root
     group: root
 
-- name: install Apps
-  apt: 
-    name: tree
+- name: install Apps on workstation.
+  apt:
+    name: 
+     - tmux
+     - htop
+     - vim-nox
+     - tree
+     - tilix 
   state: latest
