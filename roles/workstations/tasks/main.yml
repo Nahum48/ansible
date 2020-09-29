@@ -19,4 +19,4 @@
      - vim-nox
      - tree
      - tilix 
-  state: latest
+  #state: latest
