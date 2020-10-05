@@ -18,5 +18,6 @@
      - htop
      - vim-nox
      - tree
-     - tilix 
+     - tilix
+     - net-tools 
   #state: latest
