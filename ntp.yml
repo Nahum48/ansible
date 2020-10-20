@@ -3,11 +3,20 @@
   become: true
   tasks:
 
-  - name: verify NTP service is running
+  - name: verify NTP service is running # verifying NTP is Ok
     become: true
     service:
      name: ntp.service
      state: started
     when: ansible_distribution == "ubuntu"
 
+  - name: Remove apps from Clients # for testing only
+    apt:
+      name: 
+      - htop
+      - tmux
+      state: absent
+
+   
+ 
 
