@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: verify NTP service is running
+    become: true
+    service:
+     name: ntp.service
+     state: started
+    when: ansible_distribution == "ubuntu"
+
+
