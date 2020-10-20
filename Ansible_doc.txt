@@ -1,0 +1,144 @@
+=======Ansible Machines========
+ubuntu1 - 192.168.1.36
+ubuntu2 - 192.168.1.37
+ubuntu3 - 192.168.1.40
+ubuntu4 - 192.168.1.38
+ubuntu5 - 192.168.1.39
+===============================
+
+password for my ssh-key(id_ed25519):osboxes.org
+password for thr ansible ssh key is blank! (nothing)
+
+in order to avoid the typing of the password everytime when we connect to
+a different machine using ssh, we will need to follow these steps:
+
+* ssh-add (and press enter)
+* enter the password of the ie_ed22519 key, and press enter.
+
+that's it, the password key remains in the memory untill the machine is rebooted or not access for a period of time.
+
+We can also use an alias:
+
+* alias ssha='eval $(ssh-agent) && ssh-add'
+* this will allow me to type: ssha (and press enter instead of the commands i worte above.
+so, all we have to do is type: ssha (and press enter) and then to type the password for the id_ed22519
+
+One more thing we can do is: 
+
+* edit the .bashrc file
+
+- under the section of the Alias, we type (in a new line)
+
+# ssh agent
+alias ssha='eval $(ssh-agent) && ssh-add'
+
+
+# use this command to check all the host are communicating with Ansible:
+
+ansible all --key-file ~/.ssh/ansible -i inventory -m ping
+
+# or use a short version: 
+
+ansible all -m ping
+
+(this can be done after creating a config file named: ansible.cfg and setting it with settings such as this:
+
+[defaults]
+inventory = inventory
+private = /home/osboxes/.ssh/ansible
+
+# to view all the hosts type:
+
+ansible all --list-hosts
+
+# to install a stand alone packge (without using a playbook we can use this command):
+
+ansible all -m apt -a name=htop --become --ask-become-pass
+(htop is just the example here).
+
+for logging changes in ansible installation the path is:
+/var/log/apt/history.log (apt is the folder created when we install the software using the apt module).
+
+# to update all the upadtes on the ansible machines:
+
+ansible all -m apt -a "name=snapd state=latest" --become --ask-become-pass
+
+# to upgrade all packages:
+
+ansible all -m apt -a "upgrade=dist" --become --ask-become-pass
+
+#running playbooks with multipe tags:
+
+ansible-playbook  --tags "db,apache" --ask-become-pass apps.yml
+
+#running playbooks with a single tag:
+
+ansible-playbook  --tags db --ask-become-pass apps.yml
+
+# to check the Ansible playbook yml file for syntax errors:
+
+ansible-playbook --check NameOfYamlfile.yml
+
+# to view the ansible-pull crontab logs use this commnand:
+
+grep CRON /var/log/syslog
+
+# to trigeer the ansible-pull using my git pull lab use this command:
+
+# ansible-pull -U https://github.com/Nahum48/ansible_pull_lab.git > /dev/null
+
+sudo crontab -u ansible -l
+
+# to check uptime of Ansible clients run this command"
+
+ansible all -m command -a "uptime"
+
+# to gather facts on my local machine we run the command:
+
+ansible localhost -m setup
+
+# gather facts on all the ansible inventory client machines we run the command:
+
+ansible all -m setup 
+
+# in order to gather info on the Ansible configuration and version, run the command:
+
+ansible -m setup all | grep ansibe_distribution
+
+# To view which proccesses are running on Ansible Clients, run the command:
+
+ansible group-name-in-inventory -m shell "ps -eaf| grep http"
+
+# To run a specific command on a server in Ansible, run the command:
+
+ansible group-name-in-ansible -l server-name -m shell -a "systemctl stop httpd.service"
+
+# This command will print all the hardware config of Ansible machines to a TXT file:
+
+ansible -i inventory all -m setup >> Ansible_hosts_inventory.txt
+
+## to install an apt using an ad-hoc command use this command:
+
+ansible -i inventory all -b -m apt -a "name=ntp state=present"
+
+# in the above command we used -b (become) and -m (module(apt)) to install the service ntp on all Ansible clients#
+
+# To view if the ntp service has been install on all of the Ansible clients, use this command:
+
+ansible -i inventory all -b -m apt -a "name=ntp state=present" 
+
+# and we should get a reply of success from all the Ansible clients.
+
+# To view if the ntp service has been install and running on all of the Ansible clients, use this command:
+
+ansible -i inventory all -b -m apt -a "name=ntp state=present enabled=yes"
+
+# to stop the NTP service: 
+
+ansible -i inventory all -b -a "systemctl stop ntp.service"
+
+# to start the servicee use this:
+
+ansible -i inventory all -b -a "systemctl start ntp.service"
+
+
