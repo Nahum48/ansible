@@ -10,11 +10,17 @@
      state: started
     when: ansible_distribution == "ubuntu"
 
+- hosts: workstations
+  become: true
+  tasks:
+
   - name: Remove apps from Clients # for testing only
     apt:
       name: 
-      - htop
-      - tmux
+       - htop
+       - tmux
+       - vim-nox
+       - tilix
       state: absent
 
    
