@@ -142,3 +142,11 @@ ansible -i inventory all -b -a "systemctl stop ntp.service"
 ansible -i inventory all -b -a "systemctl start ntp.service"
 
 
+# to use regular expressions on Ansible clients (in this example we are checking the memory")
+# this will use the Ansible clients with the IP 40 in it's address for example: 192.168.1.40
+ansible -i inventory all -a "free -m" --limit "*.40"
+
+# and this will work as well:
+
+ansible -i inventory all -a "free -m" --limit "192.168.1.40"
+
