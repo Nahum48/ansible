@@ -150,3 +150,6 @@ ansible -i inventory all -a "free -m" --limit "*.40"
 
 ansible -i inventory all -a "free -m" --limit "192.168.1.40"
 
+# we use this command to get a list of our servers through the inventory(also helpful if we are debugging inventory.
+
+ansible-inventory --list

@@ -20,29 +20,24 @@
   become: true
   tasks: 
 
-  - name: install unzip and apps
+  - name: Install unzip and apps
     package:
       name: unzip
 
-  - name: install Terraform
+  - name: Install Terraform
     unarchive:
       src: https://releases.hashicorp.com/terraform/0.13.1/terraform_0.13.1_linux_amd64.zip
       dest: /usr/local/bin
       remote_src: yes
       mode: 0755
       owner: root
-      group: root
-  
-  - name: remove apache2 package
-    apt: 
-      name: apache2
-      state: absent
+      group: root  
  
 - hosts: web_servers
   become: true
   tasks:
 
-  - name: install apache and php for ubuntu servers
+  - name: Install apache and php for ubuntu servers
     tags: apache, apache2, ubuntu
     apt:
       name: 
@@ -51,7 +46,7 @@
       state: latest
     when: ansible_distribution == "Ubuntu"
 
-  - name: restart apache2 service
+  - name: Restart apache2 service
     tags: apache,apache2,Ubuntu
     service:
      name: apache2

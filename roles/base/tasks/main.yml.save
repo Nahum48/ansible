@@ -1,0 +1,12 @@
+- name: add ssh key for Gal user
+  tags: always
+  authorized_key:
+      user: Gal
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcw3UxMzaVWGc4xSqtu/txm+AEUCTfe3yg+Saanrw9K ansible"
+
+- become: true
+  service:
+   name: ntp.service
+   state: started
+  when: ansible_distribution == "ubuntu"
+
