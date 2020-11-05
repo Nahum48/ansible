@@ -4,7 +4,7 @@
   vars:
     create_containers: 4
     default_container_name: docker
-    default_container_image: ubuntu
+    default_container_image: busybox
     default_container_command: sleep 1d
 
   tasks:
@@ -30,7 +30,7 @@
       apt: update_cache=yes name=docker-ce state=latest
 
     - name: Install Docker Module for Python
-      pip:
+      apt:
         name: docker
 
     - name: Pull default Docker image

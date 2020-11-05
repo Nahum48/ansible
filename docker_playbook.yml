@@ -1,14 +1,14 @@
 ---
+
 - hosts: 192.168.1.38
   become: true
   vars:
     create_containers: 4
-    default_container_name: docker
-    default_container_image: ubuntu
+    default_container_name: ubuntu
+    default_container_image: busybox
     default_container_command: sleep 1d
 
   tasks:
-
     - name: Install aptitude using apt
       apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 
@@ -33,10 +33,10 @@
       pip:
         name: docker
 
-    - name: Pull default Docker image
-      docker_image:
-        name: "{{ default_container_image }}"
-        source: pull
+    #- name: Pull default Docker image
+     # docker_image:
+      #  name: "{{ default_container_image }}"
+       # source: pull
 
     - name: Create default containers
       docker_container:
