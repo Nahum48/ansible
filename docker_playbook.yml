@@ -3,10 +3,10 @@
 - hosts: 192.168.1.38
   become: true
   vars:
-    create_containers: 6
-    default_container_name: ubuntu
-    default_container_image: busybox
-    default_container_command: sleep 1d
+    create_containers: 3
+    default_container_name: docker01
+    default_container_image: ubuntu
+    default_container_command: started
 
   tasks:
     - name: Install aptitude using apt
