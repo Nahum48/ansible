@@ -1,14 +1,21 @@
 ---
 
-- hosts: 192.168.1.38
+- hosts: 192.168.1.17
   become: true
   vars:
     create_containers: 3
     default_container_name: docker01
     default_container_image: ubuntu
-    default_container_command: started
+    default_container_command: present
 
   tasks:
+
+    - name: Login to Dockerhub.
+      docker_login:
+        username: nahum1
+        password: bjuo!23
+        email: e_nahum@hotmail.com 
+
     - name: Install aptitude using apt
       apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 
@@ -23,7 +30,7 @@
 
     - name: Add Docker Repository
       apt_repository:
-        repo: deb https://download.docker.com/linux/ubuntu xenial stable
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
         state: present
 
     - name: Update apt and install docker-ce
