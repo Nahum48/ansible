@@ -14,7 +14,7 @@
       docker_login:
         username: nahum1
         password: bjuo!23
-        email: e_nahum@hotmail.com 
+        email: XXX@XXX 
 
     - name: Install aptitude using apt
       apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
